@@ -1,0 +1,30 @@
+{
+  "name": "agent-grok-consult",
+  "version": "0.1.1",
+  "description": "Consult Grok or search X with official Grok CLI first, quota-gated anonymous fallback, and authorization-gated authenticated fallback.",
+  "homepage": "https://github.com/Milllkey/agent-skills/tree/main/plugins/agent-grok-consult",
+  "repository": "https://github.com/Milllkey/agent-skills",
+  "keywords": [
+    "grok",
+    "xai",
+    "x-search",
+    "model-consultation",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Grok Consult",
+    "shortDescription": "Ask Grok or search X with a bounded fallback chain.",
+    "longDescription": "Keep GPT in control while using the official Grok CLI for consultation and native X search, with anonymous FxTwitter fallback only after explicit account-quota exhaustion and authenticated OpenCLI/xreach fallback only after current-task authorization.",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Ask Grok for an independent second opinion.",
+      "Search public X posts with Grok and verify their publication times.",
+      "Find X posts from a fixed date and exclude out-of-window results."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

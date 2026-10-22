@@ -4,16 +4,16 @@ name: Research skills contracts
 'on':
   push:
     paths:
-      - 'yichen-web-research/**'
-      - 'yichen-unified-search/**'
-      - 'yichen-content-archive/**'
-      - 'yichen-bookmarks-export/**'
-      - 'yichen-asr/**'
-      - 'plugins/yichen-grok-consult/**'
-      - 'yichen-codex-chatgpt/**'
-      - 'yichen-x-slicer/**'
-      - 'yichen-mac-wechat-dual-open/**'
-      - 'yichen-agent-memory/**'
+      - 'agent-web-research/**'
+      - 'agent-unified-search/**'
+      - 'agent-content-archive/**'
+      - 'agent-bookmarks-export/**'
+      - 'agent-asr/**'
+      - 'plugins/agent-grok-consult/**'
+      - 'agent-codex-chatgpt/**'
+      - 'agent-x-slicer/**'
+      - 'agent-mac-wechat-dual-open/**'
+      - 'agent-memory/**'
       - 'scripts/compare_installed_skills.py'
       - 'docs/skill-maintenance.md'
       - 'README.md'
@@ -24,16 +24,16 @@ name: Research skills contracts
       - '.github/requirements-research-skills.txt'
   pull_request:
     paths:
-      - 'yichen-web-research/**'
-      - 'yichen-unified-search/**'
-      - 'yichen-content-archive/**'
-      - 'yichen-bookmarks-export/**'
-      - 'yichen-asr/**'
-      - 'plugins/yichen-grok-consult/**'
-      - 'yichen-codex-chatgpt/**'
-      - 'yichen-x-slicer/**'
-      - 'yichen-mac-wechat-dual-open/**'
-      - 'yichen-agent-memory/**'
+      - 'agent-web-research/**'
+      - 'agent-unified-search/**'
+      - 'agent-content-archive/**'
+      - 'agent-bookmarks-export/**'
+      - 'agent-asr/**'
+      - 'plugins/agent-grok-consult/**'
+      - 'agent-codex-chatgpt/**'
+      - 'agent-x-slicer/**'
+      - 'agent-mac-wechat-dual-open/**'
+      - 'agent-memory/**'
       - 'scripts/compare_installed_skills.py'
       - 'docs/skill-maintenance.md'
       - 'README.md'
@@ -73,27 +73,27 @@ jobs:
 
       - name: Compile Python sources
         run: |
-          python -m py_compile yichen-unified-search/scripts/*.py
-          python -m py_compile yichen-unified-search/tests/*.py
-          python -m py_compile yichen-web-research/scripts/*.py
-          python -m py_compile yichen-web-research/tests/*.py
+          python -m py_compile agent-unified-search/scripts/*.py
+          python -m py_compile agent-unified-search/tests/*.py
+          python -m py_compile agent-web-research/scripts/*.py
+          python -m py_compile agent-web-research/tests/*.py
 
       - name: Run unified-search contracts
         run: |
           python -m unittest discover \
-            -s yichen-unified-search/tests \
+            -s agent-unified-search/tests \
             -p 'test_*.py'
 
       - name: Run web-research contracts
         run: |
           python -m unittest discover \
-            -s yichen-web-research/tests \
+            -s agent-web-research/tests \
             -p 'test_*.py'
 
       - name: Run archive and no-client-control contracts
         run: |
-          python -m unittest discover -s yichen-content-archive/tests -p 'test_*.py'
-          python -m unittest discover -s yichen-mac-wechat-dual-open/tests -p 'test_*.py'
+          python -m unittest discover -s agent-content-archive/tests -p 'test_*.py'
+          python -m unittest discover -s agent-mac-wechat-dual-open/tests -p 'test_*.py'
 
       - name: Install media contract-test runtime
         run: |
@@ -101,19 +101,19 @@ jobs:
           sudo apt-get install --no-install-recommends -y ffmpeg
 
       - name: Run X source and media contracts
-        run: node yichen-x-slicer/scripts/test.mjs
+        run: node agent-x-slicer/scripts/test.mjs
 
       - name: Check read-only version comparison
         run: python scripts/compare_installed_skills.py --local-root /nonexistent-skills-root
 
       - name: Run Grok authenticated-fallback policy contracts
         run: |
-          node --check plugins/yichen-grok-consult/mcp/server.mjs
+          node --check plugins/agent-grok-consult/mcp/server.mjs
           node --test \
-            plugins/yichen-grok-consult/mcp/authenticated-fallback-policy.test.mjs
+            plugins/agent-grok-consult/mcp/authenticated-fallback-policy.test.mjs
 
       - name: Validate the research Skill family
-        run: python yichen-web-research/scripts/validate_family.py
+        run: python agent-web-research/scripts/validate_family.py
 
       - name: Reject private paths and credential-shaped values
         run: |
@@ -122,14 +122,14 @@ jobs:
           import re
 
           roots = [
-              Path('yichen-web-research'),
-              Path('yichen-unified-search'),
-              Path('plugins/yichen-grok-consult'),
-              Path('yichen-codex-chatgpt'),
-              Path('yichen-content-archive'),
-              Path('yichen-agent-memory'),
-              Path('yichen-x-slicer'),
-              Path('yichen-mac-wechat-dual-open'),
+              Path('agent-web-research'),
+              Path('agent-unified-search'),
+              Path('plugins/agent-grok-consult'),
+              Path('agent-codex-chatgpt'),
+              Path('agent-content-archive'),
+              Path('agent-memory'),
+              Path('agent-x-slicer'),
+              Path('agent-mac-wechat-dual-open'),
           ]
           explicit_files = [
               Path('README.md'),

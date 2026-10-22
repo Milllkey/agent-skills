@@ -1,14 +1,14 @@
 {
-  "name": "yichen-skills",
+  "name": "agent-skills",
   "interface": {
-    "displayName": "Yichen Skills"
+    "displayName": "Agent Skills"
   },
   "plugins": [
     {
-      "name": "yichen-grok-consult",
+      "name": "agent-grok-consult",
       "source": {
         "source": "local",
-        "path": "./plugins/yichen-grok-consult"
+        "path": "./plugins/agent-grok-consult"
       },
       "policy": {
         "installation": "AVAILABLE",

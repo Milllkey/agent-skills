@@ -12,13 +12,13 @@ import subprocess
 from pathlib import Path
 
 ALIASES = {
-    'yichen-agent-memory': 'agent-memory',
-    'yichen-volc-asr': 'volc-asr',
-    'yichen-mac-wechat-dual-open': 'mac-wechat-dual-open',
-    'yichen-wechat-local-vault': 'wechat-local-vault',
-    'yichen-wecom-local-vault': 'wecom-local-vault',
-    'yichen-wecom-operations': 'wecom-operations',
-    'yichen-x-article-draft-uploader': 'x-article-draft-uploader',
+    'agent-memory': 'agent-memory',
+    'agent-volc-asr': 'volc-asr',
+    'agent-mac-wechat-dual-open': 'mac-wechat-dual-open',
+    'agent-wechat-local-vault': 'wechat-local-vault',
+    'agent-wecom-local-vault': 'wecom-local-vault',
+    'agent-wecom-operations': 'wecom-operations',
+    'agent-x-article-draft-uploader': 'x-article-draft-uploader',
 }
 EXCLUDED = {'work', '.git', '.venv', '.runtime', '.versions', '__pycache__',
             'node_modules', 'outputs', 'logs', 'private'}
@@ -43,7 +43,7 @@ def compare(repo: Path, roots: list[Path], plugin_root: Path | None = None) -> d
         name = entry.name
         names = [name, ALIASES.get(name, name)]
         choices = [base / alias for base in roots for alias in dict.fromkeys(names)]
-        if name == 'yichen-grok-consult':
+        if name == 'agent-grok-consult':
             choices = [plugin_root / 'skills/grok-consult'] if plugin_root else []
         installed = next((p.resolve() for p in choices if (p / 'SKILL.md').is_file()), None)
         item = {'skill': name, 'status': 'not_found', 'identical': [],
